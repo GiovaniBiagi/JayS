@@ -69,6 +69,7 @@ jobs:
           files: |
             artifacts/jays-macos-latest/**/*.dmg
             artifacts/jays-ubuntu-latest/**/*.AppImage
+            artifacts/jays-windows-latest/**/*.msi
             artifacts/jays-windows-latest/**/*.exe
           draft: false
           prerelease: false
