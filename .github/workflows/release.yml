@@ -39,18 +39,24 @@ jobs:
         run: |
           brew install create-dmg
 
-      - name: Install dependencies
+      - name: Reset npm configuration
         run: |
-          # Clear any existing npm configuration and use public registry
-          rm -f ~/.npmrc || true
-          npm config delete registry || true
-          npm config delete //registry.npmjs.org/:_authToken || true
+          # Completely reset npm configuration
+          rm -rf ~/.npm
+          rm -f ~/.npmrc
           npm config set registry https://registry.npmjs.org/
           npm config set @types:registry https://registry.npmjs.org/
-          npm install --no-audit --no-fund --no-optional
         env:
           NODE_AUTH_TOKEN: ""
           NPM_CONFIG_USERCONFIG: ""
+          NPM_CONFIG_REGISTRY: "https://registry.npmjs.org/"
+
+      - name: Install dependencies
+        run: npm install --registry https://registry.npmjs.org/ --no-audit --no-fund --omit=optional
+        env:
+          NODE_AUTH_TOKEN: ""
+          NPM_CONFIG_USERCONFIG: ""
+          NPM_CONFIG_REGISTRY: "https://registry.npmjs.org/"
 
       - name: Build Tauri app
         run: npm run tauri build
