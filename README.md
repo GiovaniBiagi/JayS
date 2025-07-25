@@ -57,7 +57,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/jays.git
+git clone https://github.com/GiovaniBiagi/jays.git
 cd jays
 
 # Install dependencies
@@ -84,13 +84,13 @@ pnpm tauri build
 
 Download the latest version for your platform:
 
-- **macOS**: [JayS.dmg](https://github.com/giovanialves/jays/releases/latest/download/JayS_x64.dmg)
-- **Windows**: [JayS.msi](https://github.com/giovanialves/jays/releases/latest/download/JayS_x64.msi)
-- **Linux**: [JayS.AppImage](https://github.com/giovanialves/jays/releases/latest/download/JayS_x64.AppImage)
+- **macOS**: [JayS.dmg](https://github.com/GiovaniBiagi/jays/releases/latest/download/JayS_x64.dmg)
+- **Windows**: [JayS.msi](https://github.com/GiovaniBiagi/jays/releases/latest/download/JayS_x64.msi)
+- **Linux**: [JayS.AppImage](https://github.com/GiovaniBiagi/jays/releases/latest/download/JayS_x64.AppImage)
 
 ### All Releases
 
-Visit our [Releases page](https://github.com/giovanialves/jays/releases) for all versions.
+Visit our [Releases page](https://github.com/GiovaniBiagi/jays/releases) for all versions.
 
 ---
 
