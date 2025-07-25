@@ -1,5 +1,5 @@
 import MonacoEditor from "@monaco-editor/react";
-import dracula from "monaco-themes/themes/Dracula.json";
+import draculaTheme from "monaco-themes/themes/Dracula.json";
 
 import { useCodeEditorViewModel } from "../viewmodels/useCodeEditorViewModel";
 
@@ -33,8 +33,16 @@ const EditorPage = () => {
           value={code}
           onChange={(val) => onChange("code", val)}
           onMount={(editor, monaco) => {
-            monaco.editor.defineTheme("dracula", dracula);
-            monaco.editor.setTheme("dracula");
+            try {
+              monaco.editor.defineTheme("dracula", draculaTheme as any);
+              monaco.editor.setTheme("dracula");
+            } catch (error) {
+              console.warn(
+                "Failed to load Dracula theme, using default:",
+                error
+              );
+              monaco.editor.setTheme("vs-dark");
+            }
             handleEditorMount(editor, monaco);
           }}
         />
