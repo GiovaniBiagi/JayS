@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  font-family: monospace;
+  background-color: #1e1e2f;
+  color: white;
+  overflow: hidden;
+}
+* {
+  --webkit-scrollbar: none;
+}
+
+#root {
+  height: 100vh;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
