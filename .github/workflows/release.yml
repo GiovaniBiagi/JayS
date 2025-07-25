@@ -1,4 +1,4 @@
-name: Release macOS
+name: Release
 
 on:
   push:
@@ -10,7 +10,10 @@ permissions:
 
 jobs:
   release:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      matrix:
+        platform: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
       - name: Checkout
@@ -24,7 +27,15 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Install macOS dependencies
+      - name: Install dependencies (Ubuntu)
+        if: matrix.platform == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev libssl-dev libasound2-dev
+          sudo apt-get install -y libwebkit2gtk-4.1-dev || sudo apt-get install -y libwebkit2gtk-4.0-dev || sudo apt-get install -y libwebkit2gtk-4.2-dev || true
+
+      - name: Install dependencies (macOS)
+        if: matrix.platform == 'macos-latest'
         run: |
           brew install create-dmg
 
@@ -37,10 +48,20 @@ jobs:
       - name: Build Tauri app
         run: npm run tauri build
 
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: jays-${{ matrix.platform }}
+          path: src-tauri/target/release/bundle/
+
       - name: Create Release
+        if: matrix.platform == 'macos-latest'
         uses: softprops/action-gh-release@v1
         with:
-          files: src-tauri/target/release/bundle/dmg/*.dmg
+          files: |
+            src-tauri/target/release/bundle/dmg/*.dmg
+            src-tauri/target/release/bundle/appimage/*.AppImage
+            src-tauri/target/release/bundle/msi/*.msi
           draft: false
           prerelease: false
         env:
