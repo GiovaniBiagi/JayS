@@ -78,6 +78,22 @@ pnpm tauri build
 
 ---
 
+## 📥 Download
+
+### Latest Release
+
+Download the latest version for your platform:
+
+- **macOS**: [JayS.dmg](https://github.com/giovanialves/jays/releases/latest/download/JayS_x64.dmg)
+- **Windows**: [JayS.msi](https://github.com/giovanialves/jays/releases/latest/download/JayS_x64.msi)
+- **Linux**: [JayS.AppImage](https://github.com/giovanialves/jays/releases/latest/download/JayS_x64.AppImage)
+
+### All Releases
+
+Visit our [Releases page](https://github.com/giovanialves/jays/releases) for all versions.
+
+---
+
 ## 🛠️ Architecture
 
 JayS is built with a clean, modular architecture:
