@@ -19,9 +19,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
-          cache: "npm"
-          registry-url: "https://registry.npmjs.org"
+          node-version: "18.19.0"
+          cache: false
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -39,24 +38,11 @@ jobs:
         run: |
           brew install create-dmg
 
-      - name: Reset npm configuration
-        run: |
-          # Completely reset npm configuration
-          rm -rf ~/.npm
-          rm -f ~/.npmrc
-          npm config set registry https://registry.npmjs.org/
-          npm config set @types:registry https://registry.npmjs.org/
-        env:
-          NODE_AUTH_TOKEN: ""
-          NPM_CONFIG_USERCONFIG: ""
-          NPM_CONFIG_REGISTRY: "https://registry.npmjs.org/"
-
       - name: Install dependencies
-        run: npm install --registry https://registry.npmjs.org/ --no-audit --no-fund --omit=optional
-        env:
-          NODE_AUTH_TOKEN: ""
-          NPM_CONFIG_USERCONFIG: ""
-          NPM_CONFIG_REGISTRY: "https://registry.npmjs.org/"
+        run: |
+          # Ensure we use public registry without any authentication
+          npm config set registry https://registry.npmjs.org/
+          npm install --no-audit --no-fund --omit=optional
 
       - name: Build Tauri app
         run: npm run tauri build
