@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  release:
+  build:
     runs-on: ${{ matrix.platform }}
     strategy:
       matrix:
@@ -54,14 +54,22 @@ jobs:
           name: jays-${{ matrix.platform }}
           path: src-tauri/target/release/bundle/
 
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
       - name: Create Release
-        if: matrix.platform == 'macos-latest'
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            src-tauri/target/release/bundle/dmg/*.dmg
-            src-tauri/target/release/bundle/appimage/*.AppImage
-            src-tauri/target/release/bundle/msi/*.msi
+            artifacts/jays-macos-latest/**/*.dmg
+            artifacts/jays-ubuntu-latest/**/*.AppImage
+            artifacts/jays-windows-latest/**/*.exe
           draft: false
           prerelease: false
         env:

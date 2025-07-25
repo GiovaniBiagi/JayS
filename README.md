@@ -84,9 +84,9 @@ pnpm tauri build
 
 Download the latest version for your platform:
 
-- **macOS**: [JayS.dmg](https://github.com/GiovaniBiagi/JayS/releases/download/v1.0.16/JayS_0.1.0_aarch64.dmg)
-- **Windows**: [JayS.zip](https://github.com/GiovaniBiagi/JayS/archive/refs/tags/v1.0.16.zip)
-- **Linux**: [JayS.tar.gz](https://github.com/GiovaniBiagi/JayS/archive/refs/tags/v1.0.16.tar.gz)
+- **macOS**: [JayS.dmg](https://github.com/GiovaniBiagi/JayS/releases/latest/download/JayS_0.1.0_x64.dmg)
+- **Windows**: [JayS.exe](https://github.com/GiovaniBiagi/JayS/releases/latest/download/JayS_0.1.0_x64.exe)
+- **Linux**: [JayS.AppImage](https://github.com/GiovaniBiagi/JayS/releases/latest/download/JayS_0.1.0_x64.AppImage)
 
 ### All Releases
 
