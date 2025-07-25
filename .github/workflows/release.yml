@@ -29,7 +29,9 @@ jobs:
         if: matrix.platform == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libwebkit2gtk-4.0-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
+          # Try different WebKit package names for different Ubuntu versions
+          sudo apt-get install -y libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev libssl-dev libasound2-dev || true
+          sudo apt-get install -y libwebkit2gtk-4.1-dev || sudo apt-get install -y libwebkit2gtk-4.0-dev || sudo apt-get install -y libwebkit2gtk-4.2-dev || true
 
       - name: Install dependencies (macOS)
         if: matrix.platform == 'macos-latest'
